@@ -50,28 +50,61 @@ if ($_SESSION['status'] == "") {
                             </h2>
                         </ul>
                         <ul id="menu-top" class="nav navbar-nav navbar-right">
+                            <?php
+
+                            if ($_SESSION['status'] == "Admin") {
+                            ?>
+
+                            <?php
+                            } ?>
+
 
                             <li><a href="master.php?page=beranda" class="menu-top-active">BERANDA</a></li>
+                            <?php
+
+                            if ($_SESSION['status'] == "Admin") {
+                            ?>
+
+                                <li>
+                                    <a class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">MASTER DATA<i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=barang">MASTER BARANG</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=satuan">MASTER SATUAN</a></li>
+
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=supplier">MASTER SUPPLIER</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=ruangan">MASTER RUANGAN</a></li>
+
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=user">MASTER PENGGUNA</a></li>
+                                    </ul>
+                                </li>
+
+                            <?php
+                            }
+
+                            ?>
+
+
+
                             <li>
-                                <a class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">MASTER DATA<i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=barang">MASTER BARANG</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=satuan">MASTER SATUAN</a></li>
+                                <?php
 
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=supplier">MASTER SUPPLIER</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=ruangan">MASTER RUANGAN</a></li>
+                                if ($_SESSION['status'] == "User") {
+                                ?>
 
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=user">MASTER PENGGUNA</a></li>
-                                </ul>
-                            </li>
+                                    <a role="menuitem" tabindex="-1" href="master.php?page=keluar">TRANSAKSI</a>
 
+                                <?php
+                                } else if ($_SESSION['status'] == "Admin") {
+                                ?>
+                                    <a class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">TRANSAKSI<i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=masuk">BARANG MASUK</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=keluar">BARANG KELUAR</a></li>
+                                    </ul>
+                                <?php
+                                }
 
-                            <li>
-                                <a class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">TRANSAKSI<i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=masuk">BARANG MASUK</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=keluar">BARANG KELUAR</a></li>
-                                </ul>
+                                ?>
                             </li>
 
 
@@ -101,6 +134,12 @@ if ($_SESSION['status'] == "") {
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
                 switch ($page) {
+
+                    case 'beranda':
+                        include "modul/beranda/index.php";
+                        break;
+
+
                     case 'barang':
                         include "modul/barang/index.php";
                         break;
@@ -201,11 +240,6 @@ if ($_SESSION['status'] == "") {
                         break;
                     case 'laporan_keluar':
                         include "modul/laporan/laporan_keluar.php";
-                        break;
-
-
-                    case 'beranda':
-                        include "modul/beranda/index.php";
                         break;
                     default:
                         include "beranda/gagal/index.php";

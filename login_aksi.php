@@ -7,13 +7,9 @@ $login = mysqli_query($konek, "SELECT * from tbl_user where user_name='$username
 $cek = mysqli_num_rows($login);
 if ($cek > 0) {
 	$data = mysqli_fetch_assoc($login);
-	if ($data['status'] == "Admin") {
-		$_SESSION['user_name'] = $username;
-		$_SESSION['status'] = "Admin";
-		header("location:master.php");
-	} else {
-		header("location:index.php?pesan=gagal");
-	}
+	$_SESSION['user_name'] = $username;
+	$_SESSION['status'] = $data['status'];
+	header("location:master.php");
 } else {
 	header("location:index.php?pesan=gagal");
 }

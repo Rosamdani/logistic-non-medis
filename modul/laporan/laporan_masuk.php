@@ -20,7 +20,7 @@
 
 <div class="col-md-16">
     <div class="box box-info">
-        <div class="modal-content">
+        <div class="modal-content" style="overflow: auto;">
             <div class="modal-header">
                 <button class="btn btn-primary large fa fa-print" onclick="printContent('cetak_report')"> Print</button>
             </div>
