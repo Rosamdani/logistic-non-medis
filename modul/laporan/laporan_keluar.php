@@ -1,5 +1,9 @@
 <?php
 error_reporting(0);
+
+if(!($_SESSION['status'] == "Admin" || $_SESSION['status'] == "SupAdmin")){
+    die();
+  }
 ?>
 <script>
     function printContent(el) {

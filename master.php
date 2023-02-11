@@ -62,19 +62,31 @@ if ($_SESSION['status'] == "") {
                             <li><a href="master.php?page=beranda" class="menu-top-active">BERANDA</a></li>
                             <?php
 
-                            if ($_SESSION['status'] == "Admin") {
+                            if ($_SESSION['status'] == "Admin" || $_SESSION['status'] == "SupAdmin") {
                             ?>
 
                                 <li>
                                     <a class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">MASTER DATA<i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=barang">MASTER BARANG</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=satuan">MASTER SATUAN</a></li>
+                                        <?php
 
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=supplier">MASTER SUPPLIER</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=ruangan">MASTER RUANGAN</a></li>
+                                        if ($_SESSION['status'] == "Admin") {
+                                        ?>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=barang">MASTER BARANG</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=satuan">MASTER SATUAN</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=supplier">MASTER SUPPLIER</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=ruangan">MASTER RUANGAN</a></li>
 
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=user">MASTER PENGGUNA</a></li>
+                                        <?php
+                                        }
+
+                                        if ($_SESSION['status'] == "SupAdmin") {
+                                        ?>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=user">MASTER PENGGUNA</a></li>
+                                        <?php
+                                        }
+
+                                        ?>
                                     </ul>
                                 </li>
 
@@ -82,8 +94,6 @@ if ($_SESSION['status'] == "") {
                             }
 
                             ?>
-
-
 
                             <li>
                                 <?php
@@ -107,18 +117,26 @@ if ($_SESSION['status'] == "") {
                                 ?>
                             </li>
 
+                            <?php
 
-                            <li>
-                                <a class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">Laporan <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_barang">Laporan Barang</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_ruangan">Laporan Ruangan</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_supplier">Laporan Supplier</a></li>
+                            if ($_SESSION['status'] == "Admin" || $_SESSION['status'] == "SupAdmin") {
+                            ?>
 
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_masuk">Laporan Masuk</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_keluar">Laporan Keluar</a></li>
-                                </ul>
-                            </li>
+                                <li>
+                                    <a class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">Laporan <i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_barang">Laporan Barang</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_ruangan">Laporan Ruangan</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_supplier">Laporan Supplier</a></li>
+
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_masuk">Laporan Masuk</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=laporan_keluar">Laporan Keluar</a></li>
+                                    </ul>
+                                </li>
+                            <?php
+                            }
+
+                            ?>
                             <li><a href="login_keluar.php">Keluar : <?php echo $_SESSION['user_name']; ?></a></li>
                         </ul>
                     </div>

@@ -11,6 +11,11 @@ $tahun = substr($date, 0, 4);
 $bulan = substr($date, 5, 2);
 $id_Order = $char . $tahun . $bulan . sprintf("%03s", $noUrut);
 ?>
+<?php
+if($_SESSION['status'] != "Admin"){
+    die();
+}
+?>
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-primary">

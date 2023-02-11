@@ -1,3 +1,8 @@
+<?php
+if(!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")){
+    die();
+}
+?>
 <div class="col-md-12">
   <h4 class="header-line">FORM BARANG KELUAR</h4>
 </div>

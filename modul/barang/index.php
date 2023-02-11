@@ -1,3 +1,9 @@
+<?php
+if($_SESSION['status'] != "Admin"){
+    die();
+}
+?>
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-success">
@@ -48,13 +54,13 @@
     </div>
 </div>
 <?php
-if (isset($_GET[hapus])) {
+if (isset($_GET['hapus'])) {
     $qry = mysqli_query($konek, "delete from tbl_barang where kode='" . $_GET["hapus"] . "'");
     if ($qry) {
         echo "<script>alert('Data Berhasil di Hapus')</script>";
         echo "<meta http-equiv='refresh' content='0; url=?page=barang'>";
     } else {
-        echo "Gagal di Hapus" . mysqli_error();
+        echo "Gagal di Hapus" . mysqli_error($konek);
         echo "<meta http-equiv='refresh' content='0; url=?page=barang'>";
     }
 }

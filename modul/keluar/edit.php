@@ -5,6 +5,11 @@ $data  = mysqli_fetch_array($sqlku);
 $ruangan = $data['kode_ruangan'];
 $barang = $data['kode_barang'];
 ?>
+<?php
+if(!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")){
+    die();
+}
+?>
 <div class="col-md-12">
   <h4 class="header-line"> FORM EDIT BARANG KELUAR</h4>
 </div>

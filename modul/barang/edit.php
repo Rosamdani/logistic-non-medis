@@ -4,6 +4,11 @@ $sqlku = mysqli_query($konek, "SELECT * FROM tbl_barang WHERE kode='$id'");
 $data  = mysqli_fetch_array($sqlku);
 $satuan = $data['kode_satuan'];
 ?>
+<?php
+if($_SESSION['status'] != "Admin"){
+    die();
+}
+?>
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="panel panel-primary">
