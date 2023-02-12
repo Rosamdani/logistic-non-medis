@@ -1,20 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11 Jul 2019 pada 22.37
--- Versi Server: 5.6.20
--- PHP Version: 5.5.15
+-- Waktu pembuatan: 12 Feb 2023 pada 14.25
+-- Versi server: 10.4.27-MariaDB
+-- Versi PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `logistik_non_medis`
@@ -26,74 +27,75 @@ SET time_zone = "+00:00";
 -- Struktur dari tabel `tbl_barang`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_barang` (
-`kode` int(11) NOT NULL,
+CREATE TABLE `tbl_barang` (
+  `kode` int(11) NOT NULL,
   `kode_barang` varchar(15) NOT NULL DEFAULT '',
   `kode_satuan` int(11) DEFAULT NULL,
   `nama_barang` varchar(100) DEFAULT NULL,
+  `jumlah` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
-  `keterangan` text
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+  `keterangan` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `tbl_barang`
 --
 
-INSERT INTO `tbl_barang` (`kode`, `kode_barang`, `kode_satuan`, `nama_barang`, `harga`, `keterangan`) VALUES
-(1, 'BR201907001', 27, 'HANDSOAP', 20000, 'BAIK'),
-(2, 'BR201907002', 27, 'BAYCLIN', 10000, 'BAIK'),
-(3, 'BR201907003', 2, 'LAMPU', 12000, 'BAIK'),
-(4, 'BR201907004', 2, 'AMPLOP UK BESAR/KECIL', 15000, 'BAIK'),
-(5, 'BR201907005', 2, 'BUKU EXSPEDISI BESAR', 17000, 'BAIK\r\n'),
-(6, 'BR201907006', 10, 'TISSUE', 10500, 'BAIK'),
-(7, 'BR201907007', 2, 'BUKU EXSPEDISI KECIL', 8000, 'BAIK'),
-(8, 'BR201907008', 6, 'PENGHARUM RUANGAN', 25000, 'BAIK'),
-(9, 'BR201907009', 32, 'SPIDOL PERMANENT', 12500, 'BAIK'),
-(10, 'BR201907010', 32, 'SPIDOL NON PERMANENT', 11500, 'BAIK'),
-(11, 'BR201907011', 2, 'KALKULATOR', 30000, 'BAIK'),
-(12, 'BR201907012', 20, 'KERTAS A4', 45000, 'BAIK'),
-(13, 'BR201907013', 20, 'KERTAS F4', 50000, 'BAIK'),
-(14, 'BR201907014', 2, 'SUPER PELL', 17500, 'BAIK'),
-(15, 'BR201907015', 10, 'PLASTIK SAMPAH HITAM', 70000, 'BAIK'),
-(16, 'BR201907016', 10, 'PLASTIK KUNING', 65000, 'BAIK'),
-(17, 'BR201907017', 41, 'KASA GULUNG', 75000, 'BAIK'),
-(18, 'BR201907018', 2, 'GUNTING', 10000, 'BAIK'),
-(19, 'BR201907019', 25, 'BATERAI ABC KECIL', 20000, 'BAIK'),
-(20, 'BR201907020', 25, 'BATERAI ABC BESAR', 22500, 'BAIK'),
-(21, 'BR201907021', 20, 'HVS WARNA KUNING', 65000, 'BAIK'),
-(22, 'BR201907022', 20, 'HVS WARNA HIJAU', 63000, 'BAIK'),
-(23, 'BR201907023', 2, 'BUSSINESS FILE', 25000, 'BAIK'),
-(24, 'BR201907024', 10, 'PLASTIK ASOY', 30000, 'BAIK'),
-(25, 'BR201907025', 20, 'HVS WARNA BIRU', 65000, 'BAIK'),
-(26, 'BR201907026', 10, 'AMPLOP COKELAT BESAR', 44000, 'BAIK'),
-(27, 'BR201907027', 2, 'PAKAR', 80000, 'BAIK'),
-(28, 'BR201907028', 2, 'KERTAS LABEL', 35000, 'BAIK'),
-(29, 'BR201907029', 2, 'PENSIL ', 12000, 'BAIK'),
-(30, 'BR201907030', 2, 'STAPLER', 40000, 'BAIK'),
-(31, 'BR201907031', 2, 'LEM KERTAS', 30000, 'BAIK'),
-(32, 'BR201907032', 2, 'ISI STAPLER', 34500, 'BAIK'),
-(33, 'BR201907033', 2, 'SELOTIP BENING KECIL', 32000, 'BAIK'),
-(34, 'BR201907034', 2, 'SELOTIP BENING BESAR', 35500, 'BAIK'),
-(35, 'BR201907035', 2, 'SELOTIP HITAM BESAR', 41000, 'BAIK'),
-(36, 'BR201907036', 2, 'TINTA PRINTER', 55000, 'BAIK'),
-(37, 'BR201907037', 2, 'SAPU', 27000, 'BAIK'),
-(38, 'BR201907038', 2, 'KAIN PEL', 52000, 'BAIK'),
-(39, 'BR201907039', 2, 'TONG SAMPAH', 90000, 'BAIK'),
-(40, 'BR201907040', 20, 'KERTAS UBI', 33000, 'BAIK'),
-(41, 'BR201907041', 32, 'TIP-X', 6000, 'BAIK'),
-(42, 'BR201907042', 10, 'MAP MERAH', 22500, 'BAIK'),
-(43, 'BR201907043', 10, 'MAP BIRU', 22500, 'BAIK'),
-(44, 'BR201907044', 10, 'MAP KUNING', 22500, 'BAIK'),
-(45, 'BR201907045', 2, 'SAPU LIDI', 34000, 'BAIK'),
-(46, 'BR201907046', 2, 'ALAS KAKI', 60000, 'BAIK'),
-(47, 'BR201907047', 32, 'DOUBLE TIPE', 47000, 'BAIK'),
-(48, 'BR201907048', 2, 'PENGGARIS', 10000, 'BAIK'),
-(49, 'BR201907049', 2, 'KWINTANSI', 11500, 'BAIK'),
-(50, 'BR201907050', 20, 'BROSUR', 80000, 'BAIK'),
-(51, 'BR201907051', 20, 'KOP SURAT', 44000, 'BAIK'),
-(52, 'BR201907052', 2, 'SABUN CUCI', 40000, 'BAIK'),
-(53, 'BR201907053', 2, 'KEMOCENG', 11000, 'BAIK'),
-(54, 'BR201907054', 2, 'SIKAT TOILET', 30000, 'BAIK');
+INSERT INTO `tbl_barang` (`kode`, `kode_barang`, `kode_satuan`, `nama_barang`, `jumlah`, `harga`, `keterangan`) VALUES
+(1, 'BR201907001', 27, 'HANDSOAP', 0, 20000, 'BAIK'),
+(2, 'BR201907002', 27, 'BAYCLIN', 0, 10000, 'BAIK'),
+(3, 'BR201907003', 2, 'LAMPU', 0, 12000, 'BAIK'),
+(4, 'BR201907004', 2, 'AMPLOP UK BESAR/KECIL', 0, 15000, 'BAIK'),
+(5, 'BR201907005', 2, 'BUKU EXSPEDISI BESAR', 0, 17000, 'BAIK\r\n'),
+(6, 'BR201907006', 10, 'TISSUE', 0, 10500, 'BAIK'),
+(7, 'BR201907007', 2, 'BUKU EXSPEDISI KECIL', 0, 8000, 'BAIK'),
+(8, 'BR201907008', 6, 'PENGHARUM RUANGAN', 0, 25000, 'BAIK'),
+(9, 'BR201907009', 32, 'SPIDOL PERMANENT', 0, 12500, 'BAIK'),
+(10, 'BR201907010', 32, 'SPIDOL NON PERMANENT', 0, 11500, 'BAIK'),
+(11, 'BR201907011', 2, 'KALKULATOR', 0, 30000, 'BAIK'),
+(12, 'BR201907012', 20, 'KERTAS A4', 0, 45000, 'BAIK'),
+(13, 'BR201907013', 20, 'KERTAS F4', 0, 50000, 'BAIK'),
+(14, 'BR201907014', 2, 'SUPER PELL', 0, 17500, 'BAIK'),
+(15, 'BR201907015', 10, 'PLASTIK SAMPAH HITAM', 0, 70000, 'BAIK'),
+(16, 'BR201907016', 10, 'PLASTIK KUNING', 0, 65000, 'BAIK'),
+(17, 'BR201907017', 41, 'KASA GULUNG', 0, 75000, 'BAIK'),
+(18, 'BR201907018', 2, 'GUNTING', 0, 10000, 'BAIK'),
+(19, 'BR201907019', 25, 'BATERAI ABC KECIL', 0, 20000, 'BAIK'),
+(20, 'BR201907020', 25, 'BATERAI ABC BESAR', 0, 22500, 'BAIK'),
+(21, 'BR201907021', 20, 'HVS WARNA KUNING', 0, 65000, 'BAIK'),
+(22, 'BR201907022', 20, 'HVS WARNA HIJAU', 0, 63000, 'BAIK'),
+(23, 'BR201907023', 2, 'BUSSINESS FILE', 0, 25000, 'BAIK'),
+(24, 'BR201907024', 10, 'PLASTIK ASOY', 0, 30000, 'BAIK'),
+(25, 'BR201907025', 20, 'HVS WARNA BIRU', 0, 65000, 'BAIK'),
+(26, 'BR201907026', 10, 'AMPLOP COKELAT BESAR', 0, 44000, 'BAIK'),
+(27, 'BR201907027', 2, 'PAKAR', 0, 80000, 'BAIK'),
+(28, 'BR201907028', 2, 'KERTAS LABEL', 0, 35000, 'BAIK'),
+(29, 'BR201907029', 2, 'PENSIL ', 0, 12000, 'BAIK'),
+(30, 'BR201907030', 2, 'STAPLER', 0, 40000, 'BAIK'),
+(31, 'BR201907031', 2, 'LEM KERTAS', 0, 30000, 'BAIK'),
+(32, 'BR201907032', 2, 'ISI STAPLER', 0, 34500, 'BAIK'),
+(33, 'BR201907033', 2, 'SELOTIP BENING KECIL', 0, 32000, 'BAIK'),
+(34, 'BR201907034', 2, 'SELOTIP BENING BESAR', 0, 35500, 'BAIK'),
+(35, 'BR201907035', 2, 'SELOTIP HITAM BESAR', 0, 41000, 'BAIK'),
+(36, 'BR201907036', 2, 'TINTA PRINTER', 0, 55000, 'BAIK'),
+(37, 'BR201907037', 2, 'SAPU', 0, 27000, 'BAIK'),
+(38, 'BR201907038', 2, 'KAIN PEL', 0, 52000, 'BAIK'),
+(39, 'BR201907039', 2, 'TONG SAMPAH', 0, 90000, 'BAIK'),
+(40, 'BR201907040', 20, 'KERTAS UBI', 0, 33000, 'BAIK'),
+(41, 'BR201907041', 32, 'TIP-X', 0, 6000, 'BAIK'),
+(42, 'BR201907042', 10, 'MAP MERAH', 0, 22500, 'BAIK'),
+(43, 'BR201907043', 10, 'MAP BIRU', 0, 22500, 'BAIK'),
+(44, 'BR201907044', 10, 'MAP KUNING', 0, 22500, 'BAIK'),
+(45, 'BR201907045', 2, 'SAPU LIDI', 0, 34000, 'BAIK'),
+(46, 'BR201907046', 2, 'ALAS KAKI', 0, 60000, 'BAIK'),
+(47, 'BR201907047', 32, 'DOUBLE TIPE', 0, 47000, 'BAIK'),
+(48, 'BR201907048', 2, 'PENGGARIS', 0, 10000, 'BAIK'),
+(49, 'BR201907049', 2, 'KWINTANSI', 0, 11500, 'BAIK'),
+(50, 'BR201907050', 20, 'BROSUR', 0, 80000, 'BAIK'),
+(51, 'BR201907051', 20, 'KOP SURAT', 0, 44000, 'BAIK'),
+(52, 'BR201907052', 2, 'SABUN CUCI', 0, 40000, 'BAIK'),
+(53, 'BR201907053', 2, 'KEMOCENG', 0, 11000, 'BAIK'),
+(54, 'BR201907054', 2, 'SIKAT TOILET', 0, 30000, 'BAIK');
 
 -- --------------------------------------------------------
 
@@ -101,14 +103,14 @@ INSERT INTO `tbl_barang` (`kode`, `kode_barang`, `kode_satuan`, `nama_barang`, `
 -- Struktur dari tabel `tbl_keluar`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_keluar` (
-`kode` int(11) NOT NULL,
+CREATE TABLE `tbl_keluar` (
+  `kode` int(11) NOT NULL,
   `kode_ruangan` int(11) DEFAULT NULL,
   `kode_barang` int(11) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
-  `catatan` text
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+  `catatan` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `tbl_keluar`
@@ -157,15 +159,15 @@ INSERT INTO `tbl_keluar` (`kode`, `kode_ruangan`, `kode_barang`, `tanggal`, `jum
 -- Struktur dari tabel `tbl_masuk`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_masuk` (
-`kode` int(11) NOT NULL,
+CREATE TABLE `tbl_masuk` (
+  `kode` int(11) NOT NULL,
   `kode_supplier` int(11) DEFAULT NULL,
   `kode_barang` int(11) DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   `jumlah` int(11) DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
   `total` int(11) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `tbl_masuk`
@@ -199,12 +201,12 @@ INSERT INTO `tbl_masuk` (`kode`, `kode_supplier`, `kode_barang`, `tanggal`, `jum
 -- Struktur dari tabel `tbl_ruangan`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_ruangan` (
-`kode` int(11) NOT NULL,
+CREATE TABLE `tbl_ruangan` (
+  `kode` int(11) NOT NULL,
   `uraian` varchar(100) DEFAULT NULL,
   `telepon` varchar(14) DEFAULT NULL,
   `lantai` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=88 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `tbl_ruangan`
@@ -303,10 +305,10 @@ INSERT INTO `tbl_ruangan` (`kode`, `uraian`, `telepon`, `lantai`) VALUES
 -- Struktur dari tabel `tbl_satuan`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_satuan` (
-`kode` int(11) NOT NULL,
+CREATE TABLE `tbl_satuan` (
+  `kode` int(11) NOT NULL,
   `uraian` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `tbl_satuan`
@@ -341,12 +343,12 @@ INSERT INTO `tbl_satuan` (`kode`, `uraian`) VALUES
 -- Struktur dari tabel `tbl_supplier`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_supplier` (
-`kode` int(11) NOT NULL,
+CREATE TABLE `tbl_supplier` (
+  `kode` int(11) NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `telepon` varchar(20) DEFAULT NULL,
   `alamat` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=113 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `tbl_supplier`
@@ -459,12 +461,12 @@ INSERT INTO `tbl_supplier` (`kode`, `nama`, `telepon`, `alamat`) VALUES
 -- Struktur dari tabel `tbl_user`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_user` (
-`kode` int(11) NOT NULL,
+CREATE TABLE `tbl_user` (
+  `kode` int(11) NOT NULL,
   `user_name` varchar(40) DEFAULT NULL,
   `password` varchar(40) DEFAULT NULL,
   `status` varchar(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `tbl_user`
@@ -472,14 +474,18 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 
 INSERT INTO `tbl_user` (`kode`, `user_name`, `password`, `status`) VALUES
 (8, 'puisi', '3d53d7dce9e6757d300933693cd05297', 'Admin'),
-(10, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
+(10, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin'),
+(11, 'user1', '6ad14ba9986e3615423dfca256d04e3f', 'Pengawas'),
+(12, 'user2', 'eb889d1b7261dae2c7a456552d3bc15b', 'User'),
+(13, 'super', '21232f297a57a5a743894a0e4a801fc3', 'SupAdmin');
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `v_barang`
+-- Stand-in struktur untuk tampilan `v_barang`
+-- (Lihat di bawah untuk tampilan aktual)
 --
-CREATE TABLE IF NOT EXISTS `v_barang` (
+CREATE TABLE `v_barang` (
 `kode` int(11)
 ,`kode_barang` varchar(15)
 ,`kode_satuan` int(11)
@@ -488,12 +494,14 @@ CREATE TABLE IF NOT EXISTS `v_barang` (
 ,`keterangan` text
 ,`satuan` varchar(50)
 );
+
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `v_keluar1`
+-- Stand-in struktur untuk tampilan `v_keluar1`
+-- (Lihat di bawah untuk tampilan aktual)
 --
-CREATE TABLE IF NOT EXISTS `v_keluar1` (
+CREATE TABLE `v_keluar1` (
 `kode` int(11)
 ,`kode_ruangan` int(11)
 ,`kode_barang` int(11)
@@ -506,6 +514,7 @@ CREATE TABLE IF NOT EXISTS `v_keluar1` (
 ,`kd_barang` varchar(15)
 ,`catatan` text
 );
+
 -- --------------------------------------------------------
 
 --
@@ -513,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `v_keluar1` (
 --
 DROP TABLE IF EXISTS `v_barang`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_barang` AS select `tbl_barang`.`kode` AS `kode`,`tbl_barang`.`kode_barang` AS `kode_barang`,`tbl_barang`.`kode_satuan` AS `kode_satuan`,`tbl_barang`.`nama_barang` AS `nama_barang`,`tbl_barang`.`harga` AS `harga`,`tbl_barang`.`keterangan` AS `keterangan`,`tbl_satuan`.`uraian` AS `satuan` from (`tbl_barang` join `tbl_satuan` on((`tbl_satuan`.`kode` = `tbl_barang`.`kode_satuan`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_barang`  AS SELECT `tbl_barang`.`kode` AS `kode`, `tbl_barang`.`kode_barang` AS `kode_barang`, `tbl_barang`.`kode_satuan` AS `kode_satuan`, `tbl_barang`.`nama_barang` AS `nama_barang`, `tbl_barang`.`harga` AS `harga`, `tbl_barang`.`keterangan` AS `keterangan`, `tbl_satuan`.`uraian` AS `satuan` FROM (`tbl_barang` join `tbl_satuan` on(`tbl_satuan`.`kode` = `tbl_barang`.`kode_satuan`))  ;
 
 -- --------------------------------------------------------
 
@@ -522,93 +531,105 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `v_keluar1`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_keluar1` AS select `tbl_keluar`.`kode` AS `kode`,`tbl_keluar`.`kode_ruangan` AS `kode_ruangan`,`tbl_keluar`.`kode_barang` AS `kode_barang`,`tbl_keluar`.`tanggal` AS `tanggal`,`tbl_keluar`.`jumlah` AS `jumlah`,`tbl_ruangan`.`uraian` AS `uraian`,`tbl_ruangan`.`telepon` AS `telepon`,`tbl_ruangan`.`lantai` AS `lantai`,`tbl_barang`.`nama_barang` AS `nama_barang`,`tbl_barang`.`kode_barang` AS `kd_barang`,`tbl_keluar`.`catatan` AS `catatan` from ((`tbl_keluar` join `tbl_ruangan` on((`tbl_keluar`.`kode_ruangan` = `tbl_ruangan`.`kode`))) join `tbl_barang` on((`tbl_keluar`.`kode_barang` = `tbl_barang`.`kode`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_keluar1`  AS SELECT `tbl_keluar`.`kode` AS `kode`, `tbl_keluar`.`kode_ruangan` AS `kode_ruangan`, `tbl_keluar`.`kode_barang` AS `kode_barang`, `tbl_keluar`.`tanggal` AS `tanggal`, `tbl_keluar`.`jumlah` AS `jumlah`, `tbl_ruangan`.`uraian` AS `uraian`, `tbl_ruangan`.`telepon` AS `telepon`, `tbl_ruangan`.`lantai` AS `lantai`, `tbl_barang`.`nama_barang` AS `nama_barang`, `tbl_barang`.`kode_barang` AS `kd_barang`, `tbl_keluar`.`catatan` AS `catatan` FROM ((`tbl_keluar` join `tbl_ruangan` on(`tbl_keluar`.`kode_ruangan` = `tbl_ruangan`.`kode`)) join `tbl_barang` on(`tbl_keluar`.`kode_barang` = `tbl_barang`.`kode`))  ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbl_barang`
+-- Indeks untuk tabel `tbl_barang`
 --
 ALTER TABLE `tbl_barang`
- ADD PRIMARY KEY (`kode`), ADD KEY `SATUA` (`kode_satuan`);
+  ADD PRIMARY KEY (`kode`),
+  ADD KEY `SATUA` (`kode_satuan`);
 
 --
--- Indexes for table `tbl_keluar`
+-- Indeks untuk tabel `tbl_keluar`
 --
 ALTER TABLE `tbl_keluar`
- ADD PRIMARY KEY (`kode`), ADD KEY `CUSTOMER` (`kode_ruangan`), ADD KEY `kode5` (`kode_barang`);
+  ADD PRIMARY KEY (`kode`),
+  ADD KEY `CUSTOMER` (`kode_ruangan`),
+  ADD KEY `kode5` (`kode_barang`);
 
 --
--- Indexes for table `tbl_masuk`
+-- Indeks untuk tabel `tbl_masuk`
 --
 ALTER TABLE `tbl_masuk`
- ADD PRIMARY KEY (`kode`), ADD KEY `kode6` (`kode_supplier`), ADD KEY `kode9` (`kode_barang`);
+  ADD PRIMARY KEY (`kode`),
+  ADD KEY `kode6` (`kode_supplier`),
+  ADD KEY `kode9` (`kode_barang`);
 
 --
--- Indexes for table `tbl_ruangan`
+-- Indeks untuk tabel `tbl_ruangan`
 --
 ALTER TABLE `tbl_ruangan`
- ADD PRIMARY KEY (`kode`);
+  ADD PRIMARY KEY (`kode`);
 
 --
--- Indexes for table `tbl_satuan`
+-- Indeks untuk tabel `tbl_satuan`
 --
 ALTER TABLE `tbl_satuan`
- ADD PRIMARY KEY (`kode`);
+  ADD PRIMARY KEY (`kode`);
 
 --
--- Indexes for table `tbl_supplier`
+-- Indeks untuk tabel `tbl_supplier`
 --
 ALTER TABLE `tbl_supplier`
- ADD PRIMARY KEY (`kode`);
+  ADD PRIMARY KEY (`kode`);
 
 --
--- Indexes for table `tbl_user`
+-- Indeks untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
- ADD PRIMARY KEY (`kode`);
+  ADD PRIMARY KEY (`kode`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tbl_barang`
+-- AUTO_INCREMENT untuk tabel `tbl_barang`
 --
 ALTER TABLE `tbl_barang`
-MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
 --
--- AUTO_INCREMENT for table `tbl_keluar`
+-- AUTO_INCREMENT untuk tabel `tbl_keluar`
 --
 ALTER TABLE `tbl_keluar`
-MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
 --
--- AUTO_INCREMENT for table `tbl_masuk`
+-- AUTO_INCREMENT untuk tabel `tbl_masuk`
 --
 ALTER TABLE `tbl_masuk`
-MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
--- AUTO_INCREMENT for table `tbl_ruangan`
+-- AUTO_INCREMENT untuk tabel `tbl_ruangan`
 --
 ALTER TABLE `tbl_ruangan`
-MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=88;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+
 --
--- AUTO_INCREMENT for table `tbl_satuan`
+-- AUTO_INCREMENT untuk tabel `tbl_satuan`
 --
 ALTER TABLE `tbl_satuan`
-MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
 --
--- AUTO_INCREMENT for table `tbl_supplier`
+-- AUTO_INCREMENT untuk tabel `tbl_supplier`
 --
 ALTER TABLE `tbl_supplier`
-MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=113;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+
 --
--- AUTO_INCREMENT for table `tbl_user`
+-- AUTO_INCREMENT untuk tabel `tbl_user`
 --
 ALTER TABLE `tbl_user`
-MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
@@ -617,21 +638,22 @@ MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 -- Ketidakleluasaan untuk tabel `tbl_barang`
 --
 ALTER TABLE `tbl_barang`
-ADD CONSTRAINT `kode1` FOREIGN KEY (`kode_satuan`) REFERENCES `tbl_satuan` (`kode`);
+  ADD CONSTRAINT `kode1` FOREIGN KEY (`kode_satuan`) REFERENCES `tbl_satuan` (`kode`);
 
 --
 -- Ketidakleluasaan untuk tabel `tbl_keluar`
 --
 ALTER TABLE `tbl_keluar`
-ADD CONSTRAINT `kode3` FOREIGN KEY (`kode_ruangan`) REFERENCES `tbl_ruangan` (`kode`),
-ADD CONSTRAINT `kode5` FOREIGN KEY (`kode_barang`) REFERENCES `tbl_barang` (`kode`);
+  ADD CONSTRAINT `kode3` FOREIGN KEY (`kode_ruangan`) REFERENCES `tbl_ruangan` (`kode`),
+  ADD CONSTRAINT `kode5` FOREIGN KEY (`kode_barang`) REFERENCES `tbl_barang` (`kode`);
 
 --
 -- Ketidakleluasaan untuk tabel `tbl_masuk`
 --
 ALTER TABLE `tbl_masuk`
-ADD CONSTRAINT `kode6` FOREIGN KEY (`kode_supplier`) REFERENCES `tbl_supplier` (`kode`),
-ADD CONSTRAINT `kode9` FOREIGN KEY (`kode_barang`) REFERENCES `tbl_barang` (`kode`);
+  ADD CONSTRAINT `kode6` FOREIGN KEY (`kode_supplier`) REFERENCES `tbl_supplier` (`kode`),
+  ADD CONSTRAINT `kode9` FOREIGN KEY (`kode_barang`) REFERENCES `tbl_barang` (`kode`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
