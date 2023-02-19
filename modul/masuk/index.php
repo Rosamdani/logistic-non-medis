@@ -53,13 +53,13 @@
     </div>
 </div>
 <?php
-if (isset($_GET[hapus])) {
+if (isset($_GET['hapus'])) {
     $qry = mysqli_query($konek, "delete from tbl_masuk where kode='" . $_GET["hapus"] . "'");
     if ($qry) {
         echo "<script>alert('Data Berhasil di Hapus')</script>";
         echo "<meta http-equiv='refresh' content='0; url=?page=masuk'>";
     } else {
-        echo "Gagal di Hapus" . mysqli_error();
+        echo "Gagal di Hapus" . mysqli_error($konek);
         echo "<meta http-equiv='refresh' content='0; url=?page=masuk'>";
     }
 }

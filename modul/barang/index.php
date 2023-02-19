@@ -19,8 +19,8 @@ if($_SESSION['status'] != "Admin"){
                                 <th width="5%">NO</th>
                                 <th width="10%">KODE BARANG</th>
                                 <th>NAMA BARANG</th>
-                                <!-- <th>STOK</th> -->
                                 <th>HARGA</th>
+                                <th>STOK (DALAM GUDANG)</th>
                                 <th>SATUAN</th>
                                 <th width="3%"></th>
                                 <th width="3%"></th>
@@ -30,7 +30,7 @@ if($_SESSION['status'] != "Admin"){
                         <tbody>
                             <?php
                             $no = 1;
-                            $qry = mysqli_query($konek, "select `tbl_barang`.`kode` AS `kode`,`tbl_barang`.`kode_barang` AS `kode_barang`,`tbl_barang`.`kode_satuan` AS `kode_satuan`,`tbl_barang`.`nama_barang` AS `nama_barang`,`tbl_barang`.`harga` AS `harga`,`tbl_barang`.`keterangan` AS `keterangan`,`tbl_satuan`.`uraian` AS `satuan` from (`tbl_barang` join `tbl_satuan` on((`tbl_satuan`.`kode` = `tbl_barang`.`kode_satuan`)))");
+                            $qry = mysqli_query($konek, "select `tbl_barang`.`kode` AS `kode`,`tbl_barang`.`kode_barang` AS `kode_barang`,`tbl_barang`.`jumlah` AS `stok` ,`tbl_barang`.`kode_satuan` AS `kode_satuan`,`tbl_barang`.`nama_barang` AS `nama_barang`,`tbl_barang`.`harga` AS `harga`,`tbl_barang`.`keterangan` AS `keterangan`,`tbl_satuan`.`uraian` AS `satuan` from (`tbl_barang` join `tbl_satuan` on((`tbl_satuan`.`kode` = `tbl_barang`.`kode_satuan`)))");
                             while ($data = mysqli_fetch_array($qry)) {
                                 ?>
                                 <tr class="odd gradeX">
@@ -38,6 +38,7 @@ if($_SESSION['status'] != "Admin"){
                                     <td><?php echo $data['kode_barang']; ?></td>
                                     <td><?php echo $data['nama_barang']; ?></td>
                                     <td><?php echo $data['harga']; ?></td>
+                                    <td><?php echo $data['stok']; ?></td>
                                     <td><?php echo $data['satuan']; ?></td>
                                     <td class="center"><a href="master.php?page=edit_barang&id=<?php echo base64_encode($data['kode']); ?>" class="fa fa-refresh btn btn-success"> Edit</a></td>
                                     </td>

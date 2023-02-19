@@ -31,7 +31,7 @@
           echo '<option>-Pilih- </option>';
           while ($row = mysqli_fetch_array($result)) {
             echo '<option value="' . $row['kode'] . '">' . $row['nama_barang'] . '</option>';
-            $jsArray .= "prdName['" . $row['kode'] . "'] = {name:'" . addslashes($row['stok']) . "',desc:'" . addslashes($row['harga']) . "'};\n";
+            $jsArray .= "prdName['" . $row['kode'] . "'] = {name:'" . addslashes($row['jumlah']) . "',desc:'" . addslashes($row['harga']) . "'};\n";
           }
           echo '</select>';
           ?>
@@ -39,15 +39,11 @@
 
           <script type="text/javascript">
             <?php echo $jsArray; ?>
+
             function
-            changeValue(id)
-            {
-            document.getElementById('stok_awal').value
-            =
-            prdName[id].name;
-            document.getElementById('harga_awal').value
-            =
-            prdName[id].desc;
+            changeValue(id) {
+              document.getElementById('stok_awal').value = prdName[id].name;
+              document.getElementById('harga_awal').value = prdName[id].desc;
             };
           </script>
 
@@ -81,20 +77,21 @@
         BARANG MASUK
       </div>
       <div class="panel-body">
-        <div class="form-group">
-          <label>Harga *</label>
-          <input type="number" class="form-control" onchange="kali()" name="txtharga" id="harga_awal" placeholder="Harga" required oninvalid="this.setCustomValidity('Tidak Boleh Kosong, Harap di isi dengan benar.!')" oninput="setCustomValidity('')" />
-        </div>
+        <form method="post">
+          <div class="form-group">
+            <label>Harga *</label>
+            <input type="number" class="form-control" onchange="kali()" name="txtharga" id="harga_awal" placeholder="Harga" required oninvalid="this.setCustomValidity('Tidak Boleh Kosong, Harap di isi dengan benar.!')" oninput="setCustomValidity('')" />
+          </div>
 
-        <div class="form-group">
-          <label>Jumlah Masuk *</label>
-          <input type="number" class="form-control" onchange="kali()" name="txtjumlah" placeholder="Jumlah Barang Masuk" required oninvalid="this.setCustomValidity('Tidak Boleh Kosong, Harap di isi dengan benar.!')" oninput="setCustomValidity('')" />
-        </div>
-        <div class="form-group">
-          <label>Total *</label>
-          <input type="number" class="form-control" readonly="true" onclick="kali()" name="txttotal" placeholder="Total" required oninvalid="this.setCustomValidity('Tidak Boleh Kosong, Harap di isi dengan benar.!')" oninput="setCustomValidity('')" />
-        </div>
-        <button type="submit" name="btnsimpan" class="btn btn-primary">SIMPAN</button>
+          <div class="form-group">
+            <label>Jumlah Masuk *</label>
+            <input type="number" class="form-control" onchange="kali()" name="txtjumlah" placeholder="Jumlah Barang Masuk" required oninvalid="this.setCustomValidity('Tidak Boleh Kosong, Harap di isi dengan benar.!')" oninput="setCustomValidity('')" />
+          </div>
+          <div class="form-group">
+            <label>Total *</label>
+            <input type="number" class="form-control" readonly="true" onclick="kali()" name="txttotal" placeholder="Total" required oninvalid="this.setCustomValidity('Tidak Boleh Kosong, Harap di isi dengan benar.!')" oninput="setCustomValidity('')" />
+          </div>
+          <button type="submit" name="btnsimpan" class="btn btn-primary">SIMPAN</button>
         </form>
         <?php
         if (isset($_POST["btnsimpan"])) {
@@ -108,11 +105,15 @@
 
           $simpan = mysqli_query($konek, "INSERT INTO tbl_masuk (kode_supplier,kode_barang,tanggal,jumlah,harga,total) VALUES ('$cbsupplier','$cbbarang','$tanggal','$txtjumlah','$txtharga','$txttotal')");
           if ($simpan) {
-            ?>
+            $ambilJumlah = mysqli_query($konek, "SELECT jumlah FROM tbl_barang WHERE kode = '$cbbarang'");
+            $data = mysqli_fetch_array($ambilJumlah);
+            $hasilJumlah = $data['jumlah'] + $_POST['txtjumlah'];
+            $simpanHasil = mysqli_query($konek, "UPDATE tbl_barang SET jumlah = '$hasilJumlah' WHERE kode = '$cbbarang'");
+        ?>
             <script type="text/javascript">
               document.location.href = "master.php?page=masuk";
             </script>
-          <?php
+        <?php
           } else {
             echo "<script>alert('Data Anda Gagal di simpan')</script>";
             echo "<meta http-equiv='refresh' content='0; url=?page=masuk'>";

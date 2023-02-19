@@ -101,7 +101,11 @@ if ($_SESSION['status'] == "") {
                                 if ($_SESSION['status'] == "User") {
                                 ?>
 
-                                    <a role="menuitem" tabindex="-1" href="master.php?page=keluar">TRANSAKSI</a>
+                                    <a class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">TRANSAKSI<i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=keluar">BARANG KELUAR</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=masuk">RIWAYAT PENGGUNAAN BARANG</a></li>
+                                    </ul>
 
                                 <?php
                                 } else if ($_SESSION['status'] == "Admin") {
