@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Feb 2023 pada 14.25
+-- Waktu pembuatan: 20 Feb 2023 pada 03.57
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.0.25
 
@@ -42,7 +42,7 @@ CREATE TABLE `tbl_barang` (
 --
 
 INSERT INTO `tbl_barang` (`kode`, `kode_barang`, `kode_satuan`, `nama_barang`, `jumlah`, `harga`, `keterangan`) VALUES
-(1, 'BR201907001', 27, 'HANDSOAP', 0, 20000, 'BAIK'),
+(1, 'BR201907001', 27, 'HANDSOAP', 8, 20000, 'BAIK'),
 (2, 'BR201907002', 27, 'BAYCLIN', 0, 10000, 'BAIK'),
 (3, 'BR201907003', 2, 'LAMPU', 0, 12000, 'BAIK'),
 (4, 'BR201907004', 2, 'AMPLOP UK BESAR/KECIL', 0, 15000, 'BAIK'),
@@ -151,7 +151,13 @@ INSERT INTO `tbl_keluar` (`kode`, `kode_ruangan`, `kode_barang`, `tanggal`, `jum
 (36, 72, 34, '2019-07-11', 2, 'BAIK'),
 (37, 36, 14, '2019-07-11', 2, 'BAIK'),
 (38, 17, 10, '2019-07-11', 2, 'BAIK'),
-(39, 45, 6, '2019-07-11', 2, 'BAIK');
+(39, 45, 6, '2019-07-11', 2, 'BAIK'),
+(40, 1, 1, '2023-02-20', 10, 'Baik'),
+(41, 2, 1, '2023-02-20', 2, 'BAIK'),
+(42, 1, 1, '2023-02-20', 1, 'BAIK'),
+(43, 1, 1, '2023-02-20', 1, 'BAIK'),
+(44, 1, 1, '2023-02-20', 1, 'BAIK'),
+(45, 1, 1, '2023-02-20', 1, 'BAIK');
 
 -- --------------------------------------------------------
 
@@ -193,7 +199,32 @@ INSERT INTO `tbl_masuk` (`kode`, `kode_supplier`, `kode_barang`, `tanggal`, `jum
 (28, 5, 20, '2019-07-11', 10, 55000, 550000),
 (29, 29, 52, '2019-07-11', 20, 8500, 170000),
 (30, 8, 36, '2019-07-11', 5, 50000, 250000),
-(31, 112, 41, '2019-07-11', 15, 9000, 135000);
+(31, 112, 41, '2019-07-11', 15, 9000, 135000),
+(32, 2, 2, '2023-02-13', 10, 150000, 1500000),
+(33, 2, 4, '2023-02-13', 10, 2000, 20000),
+(34, 2, 1, '2023-02-20', 2, 10000, 20000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_opname`
+--
+
+CREATE TABLE `tbl_opname` (
+  `kode` int(11) NOT NULL,
+  `kode_barang` int(11) NOT NULL,
+  `satuan` varchar(50) NOT NULL,
+  `stok_awal` int(11) NOT NULL,
+  `pengambilan` int(11) NOT NULL,
+  `stok_akhir` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tbl_opname`
+--
+
+INSERT INTO `tbl_opname` (`kode`, `kode_barang`, `satuan`, `stok_awal`, `pengambilan`, `stok_akhir`) VALUES
+(3, 1, '27', 9, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -561,6 +592,13 @@ ALTER TABLE `tbl_masuk`
   ADD KEY `kode9` (`kode_barang`);
 
 --
+-- Indeks untuk tabel `tbl_opname`
+--
+ALTER TABLE `tbl_opname`
+  ADD PRIMARY KEY (`kode`),
+  ADD KEY `kode_barang` (`kode_barang`);
+
+--
 -- Indeks untuk tabel `tbl_ruangan`
 --
 ALTER TABLE `tbl_ruangan`
@@ -598,13 +636,19 @@ ALTER TABLE `tbl_barang`
 -- AUTO_INCREMENT untuk tabel `tbl_keluar`
 --
 ALTER TABLE `tbl_keluar`
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_masuk`
 --
 ALTER TABLE `tbl_masuk`
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_opname`
+--
+ALTER TABLE `tbl_opname`
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_ruangan`
@@ -653,6 +697,12 @@ ALTER TABLE `tbl_keluar`
 ALTER TABLE `tbl_masuk`
   ADD CONSTRAINT `kode6` FOREIGN KEY (`kode_supplier`) REFERENCES `tbl_supplier` (`kode`),
   ADD CONSTRAINT `kode9` FOREIGN KEY (`kode_barang`) REFERENCES `tbl_barang` (`kode`);
+
+--
+-- Ketidakleluasaan untuk tabel `tbl_opname`
+--
+ALTER TABLE `tbl_opname`
+  ADD CONSTRAINT `tbl_opname_ibfk_1` FOREIGN KEY (`kode_barang`) REFERENCES `tbl_barang` (`kode`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
