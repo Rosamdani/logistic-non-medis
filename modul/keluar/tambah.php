@@ -1,6 +1,6 @@
 <?php
-if(!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")){
-    die();
+if (!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")) {
+  die();
 }
 ?>
 <div class="col-md-12">
@@ -10,7 +10,7 @@ if(!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")){
   <div class="col-md-6 col-sm-6 col-xs-6">
     <div class="panel panel-primary">
       <div class="panel-heading">
-      BARANG KELUAR KE RUANGAN 
+        BARANG KELUAR KE RUANGAN
       </div>
       <div class="panel-body">
         <form role="form" method="POST" action="" name="form">
@@ -44,15 +44,13 @@ if(!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")){
 
           <script type="text/javascript">
             <?php echo $jsArray; ?>
+
             function
-            changeValue(id)
-            {
-            document.getElementById('stok_awal').value
-            =
-            prdName[id].name;
-            document.getElementById('harga_awal').value
-            =
-            prdName[id].desc;
+            changeValue(id) {
+              document.getElementById('stok_awal').value =
+                prdName[id].name;
+              document.getElementById('harga_awal').value =
+                prdName[id].desc;
             };
           </script>
 
@@ -78,10 +76,10 @@ if(!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")){
   <div class="col-md-6 col-sm-6 col-xs-6">
     <div class="panel panel-Success">
       <div class="panel-heading">
-      BARANG KELUAR
+        BARANG KELUAR
       </div>
       <div class="panel-body">
-       
+
 
         <div class="form-group">
           <label>Jumlah Keluar *</label>
@@ -89,10 +87,10 @@ if(!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")){
         </div>
 
         <div class="form-group">
-            <label>Catatan *</label>
-            <textarea class="form-control" name="txtcatatan" rows="3" required oninvalid="this.setCustomValidity('Tidak Boleh Kosong, Harap di isi dengan benar.!')" oninput="setCustomValidity('')" placeholder="Catatan" /></textarea>
-          </div>
-          
+          <label>Catatan *</label>
+          <textarea class="form-control" name="txtcatatan" rows="3" required oninvalid="this.setCustomValidity('Tidak Boleh Kosong, Harap di isi dengan benar.!')" oninput="setCustomValidity('')" placeholder="Catatan" /></textarea>
+        </div>
+
         <button type="submit" name="btnsimpan" class="btn btn-primary">SIMPAN</button>
         </form>
         <?php
@@ -103,18 +101,36 @@ if(!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")){
           $tanggal = date("Y-m-d H:i:s");
           $txtcatatan = mysqli_real_escape_string($konek, $_POST['txtcatatan']);
 
-          $simpan = mysqli_query($konek, "INSERT INTO tbl_keluar (kode_ruangan,kode_barang,tanggal,jumlah,catatan) VALUES ('$cbruangan','$cbbarang','$tanggal','$txtjumlah','$txtcatatan')");
-          if ($simpan) {
-            ?>
-            <script type="text/javascript">
-              document.location.href = "master.php?page=keluar";
-            </script>
-          <?php
-          } else {
-            echo "<script>alert('Data Anda Gagal di simpan')</script>";
-            echo "<meta http-equiv='refresh' content='0; url=?page=kelur'>";
+          $ambilJumlah = mysqli_query($konek, "SELECT * FROM tbl_barang WHERE kode = '$cbbarang'");
+          $data3 = mysqli_fetch_array($ambilJumlah);
+          $csatuan = $data3['kode_satuan'];
+          $jum = $data3['jumlah'];
+          $hasilJumlah = $jum - $_POST['txtjumlah'];
+          if ($hasilJumlah > 0) { 
+            $simpan = mysqli_query($konek, "INSERT INTO tbl_keluar (kode_ruangan,kode_barang,tanggal,jumlah,catatan) VALUES ('$cbruangan','$cbbarang','$tanggal','$txtjumlah','$txtcatatan')");
+            if ($simpan) {
+              $simpanHasil = mysqli_query($konek, "UPDATE tbl_barang SET jumlah = '$hasilJumlah' WHERE kode = '$cbbarang'");
+              $OpName = mysqli_query($konek, "INSERT INTO tbl_opname (`kode_barang`,`satuan`,`stok_awal`,`pengambilan`,`stok_akhir`) VALUES ('$cbbarang','$csatuan','$jum','$txtjumlah','$hasilJumlah')");
+              if(!$OpName){
+                echo "<script>alert('Gagal masuk opname')</script>";
+                echo mysqli_error($konek);
+              }
+        ?>
+              <script type="text/javascript">
+                document.location.href = "master.php?page=keluar";
+              </script>
+        <?php
+            } else {
+              echo "<script>alert('Data Anda Gagal di simpan')</script>";
+              echo "<meta http-equiv='refresh' content='0; url=?page=keluar'>";
+            }
+          }else{
+              echo "<script>alert('Stok yang tersedia tidak mencukupi')</script>";
+              echo "<meta http-equiv='refresh' content='0; url=?page=keluar'>";
           }
         }
+
+
         ?>
 
       </div>

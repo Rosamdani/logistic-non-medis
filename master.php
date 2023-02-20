@@ -104,7 +104,7 @@ if ($_SESSION['status'] == "") {
                                     <a class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown">TRANSAKSI<i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=keluar">BARANG KELUAR</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=masuk">RIWAYAT PENGGUNAAN BARANG</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="master.php?page=opname">RIWAYAT PENGGUNAAN BARANG</a></li>
                                     </ul>
 
                                 <?php
@@ -230,6 +230,9 @@ if ($_SESSION['status'] == "") {
                     case 'edit_keluar':
                         include "modul/keluar/edit.php";
                         break;
+                    case 'opname':
+                            include "modul/opname/index.php";
+                            break;
 
 
 
