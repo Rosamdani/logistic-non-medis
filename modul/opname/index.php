@@ -83,6 +83,7 @@ $konek = mysqli_connect ($server, $user, $password, $database);
                     <tr>
                         <th width="5%">NO</th>
                         <th width="10%">KODE BARANG</th>
+                        <th width="10%">NAMA BARANG</th>
                         <th width="10%">KODE SATUAN</th>
                         <th>STOK AWAL</th>
                         <th>PENGAMBILAN</th>
@@ -94,10 +95,14 @@ $konek = mysqli_connect ($server, $user, $password, $database);
                     $select = mysqli_query($konek, "SELECT * FROM tbl_opname");
                     if (mysqli_num_rows($select)) {
                         while ($data = mysqli_fetch_array($select)) {
-                    ?>
+                            $idBarang = $data['kode_barang'];
+                            $select2 = mysqli_query($konek, "SELECT kode_barang as kode, nama_barang as nama FROM tbl_barang WHERE kode = $idBarang");
+                            $data3 = mysqli_fetch_array($select2);                    
+                        ?>
                             <tr>
                                 <td><?php echo $no++; ?></td>
-                                <td><?php echo $data['kode_barang']; ?></td>
+                                <td><?php echo $data3['kode']; ?></td>
+                                <td><?php echo $data3['nama']; ?></td>
                                 <td><?php echo $data['satuan']; ?></td>
                                 <td><?php echo $data['stok_awal']; ?></td>
                                 <td> <?php echo $data['pengambilan']; ?> </td>
