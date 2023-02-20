@@ -101,8 +101,7 @@ if (!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")) {
           $tanggal = date("Y-m-d H:i:s");
           $txtcatatan = mysqli_real_escape_string($konek, $_POST['txtcatatan']);
 
-          $ambilJumlah = mysqli_query($konek, "SELECT * FROM tbl_barang WHERE kode = '$cbbarang'");
-          $data3 = mysqli_fetch_array($ambilJumlah);
+          $ambilJumlah = mysqli_query($konek, "SELECT * FROM tbl_barang WHERE kode = '$cbbarang'"); 
           $csatuan = $data3['kode_satuan'];
           $jum = $data3['jumlah'];
           $hasilJumlah = $jum - $_POST['txtjumlah'];
