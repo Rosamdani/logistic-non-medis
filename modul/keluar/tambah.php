@@ -102,6 +102,7 @@ if (!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")) {
           $txtcatatan = mysqli_real_escape_string($konek, $_POST['txtcatatan']);
 
           $ambilJumlah = mysqli_query($konek, "SELECT * FROM tbl_barang WHERE kode = '$cbbarang'"); 
+          $data3 = mysqli_fetch_array($ambilJumlah);
           $csatuan = $data3['kode_satuan'];
           $jum = $data3['jumlah'];
           $hasilJumlah = $jum - $_POST['txtjumlah'];
@@ -109,7 +110,7 @@ if (!($_SESSION['status'] == "User" || $_SESSION['status'] == "Admin")) {
             $simpan = mysqli_query($konek, "INSERT INTO tbl_keluar (kode_ruangan,kode_barang,tanggal,jumlah,catatan) VALUES ('$cbruangan','$cbbarang','$tanggal','$txtjumlah','$txtcatatan')");
             if ($simpan) {
               $simpanHasil = mysqli_query($konek, "UPDATE tbl_barang SET jumlah = '$hasilJumlah' WHERE kode = '$cbbarang'");
-              $OpName = mysqli_query($konek, "INSERT INTO tbl_opname (`kode_barang`,`satuan`,`stok_awal`,`pengambilan`,`stok_akhir`) VALUES ('$cbbarang','$csatuan','$jum','$txtjumlah','$hasilJumlah')");
+              $OpName = mysqli_query($konek, "INSERT INTO tbl_opname (`kode_barang`,`satuan`,`stok_awal`,`pengambilan`,`stok_akhir`,`ket`) VALUES ('$cbbarang','$csatuan','$jum','$txtjumlah','$hasilJumlah','Keluar')");
               if(!$OpName){
                 echo "<script>alert('Gagal masuk opname')</script>";
                 echo mysqli_error($konek);

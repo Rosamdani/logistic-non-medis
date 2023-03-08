@@ -77,7 +77,7 @@ $konek = mysqli_connect ($server, $user, $password, $database);
                     }
                 </style>
                 <center>
-                    <H3> RIWAYAT PENGGUNAAN BARANG <br> NON MEDIS KLINIK PRATAMA UIN SUKA</H3>
+                    <H3> TABEL STOK OPNAME <br> NON MEDIS KLINIK PRATAMA UIN SUKA</H3>
                 </center>
                 <table id="customers" width="100%" border="1">
                     <tr>
@@ -88,6 +88,7 @@ $konek = mysqli_connect ($server, $user, $password, $database);
                         <th>STOK AWAL</th>
                         <th>PENGAMBILAN</th>
                         <th>STOK AKHIR</th>
+                        <th>KETERANGAN</th>
                     </tr>
                     <?php
                     $no = 1;
@@ -107,6 +108,7 @@ $konek = mysqli_connect ($server, $user, $password, $database);
                                 <td><?php echo $data['stok_awal']; ?></td>
                                 <td> <?php echo $data['pengambilan']; ?> </td>
                                 <td> <?php echo $data['stok_akhir']; ?> </td>
+                                <td> <?php echo $data['ket']; ?> </td>
                             </tr>
 
 

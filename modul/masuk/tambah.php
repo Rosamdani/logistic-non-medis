@@ -105,14 +105,34 @@
 
           $simpan = mysqli_query($konek, "INSERT INTO tbl_masuk (kode_supplier,kode_barang,tanggal,jumlah,harga,total) VALUES ('$cbsupplier','$cbbarang','$tanggal','$txtjumlah','$txtharga','$txttotal')");
           if ($simpan) {
-            $ambilJumlah = mysqli_query($konek, "SELECT jumlah FROM tbl_barang WHERE kode = '$cbbarang'");
-            $data = mysqli_fetch_array($ambilJumlah);
-            $hasilJumlah = $data['jumlah'] + $_POST['txtjumlah'];
-            $simpanHasil = mysqli_query($konek, "UPDATE tbl_barang SET jumlah = '$hasilJumlah' WHERE kode = '$cbbarang'");
+            $ambilJumlah = mysqli_query($konek, "SELECT * FROM tbl_barang WHERE kode = '$cbbarang'");
+            $data3 = mysqli_fetch_array($ambilJumlah);
+            $csatuan = $data3['kode_satuan'];
+            $jum = $data3['jumlah']; //Jumlah awal
+            $hasilJumlah = $jum + $_POST['txtjumlah']; //Jumlah akhir
+            if ($hasilJumlah > 0) {
+              $simpan = mysqli_query($konek, "INSERT INTO tbl_masuk (kode_ruangan,kode_barang,tanggal,jumlah,catatan) VALUES ('$cbruangan','$cbbarang','$tanggal','$txtjumlah','$txtcatatan')");
+              if ($simpan) {
+                $simpanHasil = mysqli_query($konek, "UPDATE tbl_barang SET jumlah = '$hasilJumlah' WHERE kode = '$cbbarang'");
+                $OpName = mysqli_query($konek, "INSERT INTO tbl_opname (`kode_barang`,`satuan`,`stok_awal`,`pengambilan`,`stok_akhir`,`ket`) VALUES ('$cbbarang','$csatuan','$jum','$txtjumlah','$hasilJumlah','Masuk')");
+                if (!$OpName) {
+                  echo "<script>alert('Gagal masuk opname')</script>";
+                  echo mysqli_error($konek);
+                }
         ?>
-            <script type="text/javascript">
-              document.location.href = "master.php?page=masuk";
-            </script>
+                <script type="text/javascript">
+                  document.location.href = "master.php?page=masuk";
+                </script>
+            <?php
+              } else {
+                echo "<script>alert('Data Anda Gagal di simpan')</script>";
+                echo "<meta http-equiv='refresh' content='0; url=?page=keluar'>";
+              }
+            } else {
+              echo "<script>alert('Stok yang tersedia tidak mencukupi')</script>";
+              echo "<meta http-equiv='refresh' content='0; url=?page=keluar'>";
+            }
+            ?>
         <?php
           } else {
             echo "<script>alert('Data Anda Gagal di simpan')</script>";
