@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Feb 2023 pada 03.57
+-- Waktu pembuatan: 10 Mar 2023 pada 14.30
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.0.25
 
@@ -44,7 +44,7 @@ CREATE TABLE `tbl_barang` (
 INSERT INTO `tbl_barang` (`kode`, `kode_barang`, `kode_satuan`, `nama_barang`, `jumlah`, `harga`, `keterangan`) VALUES
 (1, 'BR201907001', 27, 'HANDSOAP', 8, 20000, 'BAIK'),
 (2, 'BR201907002', 27, 'BAYCLIN', 0, 10000, 'BAIK'),
-(3, 'BR201907003', 2, 'LAMPU', 0, 12000, 'BAIK'),
+(3, 'BR201907003', 2, 'LAMPU', 10, 12000, 'BAIK'),
 (4, 'BR201907004', 2, 'AMPLOP UK BESAR/KECIL', 0, 15000, 'BAIK'),
 (5, 'BR201907005', 2, 'BUKU EXSPEDISI BESAR', 0, 17000, 'BAIK\r\n'),
 (6, 'BR201907006', 10, 'TISSUE', 0, 10500, 'BAIK'),
@@ -157,7 +157,8 @@ INSERT INTO `tbl_keluar` (`kode`, `kode_ruangan`, `kode_barang`, `tanggal`, `jum
 (42, 1, 1, '2023-02-20', 1, 'BAIK'),
 (43, 1, 1, '2023-02-20', 1, 'BAIK'),
 (44, 1, 1, '2023-02-20', 1, 'BAIK'),
-(45, 1, 1, '2023-02-20', 1, 'BAIK');
+(45, 1, 1, '2023-02-20', 1, 'BAIK'),
+(46, 1, 1, '2023-03-06', 10, 'BAIK');
 
 -- --------------------------------------------------------
 
@@ -202,7 +203,14 @@ INSERT INTO `tbl_masuk` (`kode`, `kode_supplier`, `kode_barang`, `tanggal`, `jum
 (31, 112, 41, '2019-07-11', 15, 9000, 135000),
 (32, 2, 2, '2023-02-13', 10, 150000, 1500000),
 (33, 2, 4, '2023-02-13', 10, 2000, 20000),
-(34, 2, 1, '2023-02-20', 2, 10000, 20000);
+(34, 2, 1, '2023-02-20', 2, 10000, 20000),
+(35, 2, 1, '2023-03-06', 10, 10000, 100000),
+(36, 2, 3, '2023-03-06', 100, 10000, 1000000),
+(37, 2, 1, '2023-03-08', 10, 1000, 10000),
+(38, 2, 3, '2023-03-10', 10, 7000, 70000),
+(39, 2, 3, '2023-03-10', 10, 7000, 70000),
+(40, 2, 3, '2023-03-10', 10, 7000, 70000),
+(41, 2, 3, '2023-03-10', 10, 7000, 70000);
 
 -- --------------------------------------------------------
 
@@ -216,15 +224,17 @@ CREATE TABLE `tbl_opname` (
   `satuan` varchar(50) NOT NULL,
   `stok_awal` int(11) NOT NULL,
   `pengambilan` int(11) NOT NULL,
-  `stok_akhir` int(11) NOT NULL
+  `stok_akhir` int(11) NOT NULL,
+  `ket` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tbl_opname`
 --
 
-INSERT INTO `tbl_opname` (`kode`, `kode_barang`, `satuan`, `stok_awal`, `pengambilan`, `stok_akhir`) VALUES
-(3, 1, '27', 9, 1, 8);
+INSERT INTO `tbl_opname` (`kode`, `kode_barang`, `satuan`, `stok_awal`, `pengambilan`, `stok_akhir`, `ket`) VALUES
+(4, 1, '27', 18, 10, 8, 'Keluar'),
+(5, 3, '2', 0, 10, 10, 'Masuk');
 
 -- --------------------------------------------------------
 
@@ -636,19 +646,19 @@ ALTER TABLE `tbl_barang`
 -- AUTO_INCREMENT untuk tabel `tbl_keluar`
 --
 ALTER TABLE `tbl_keluar`
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_masuk`
 --
 ALTER TABLE `tbl_masuk`
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_opname`
 --
 ALTER TABLE `tbl_opname`
-  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tbl_ruangan`
