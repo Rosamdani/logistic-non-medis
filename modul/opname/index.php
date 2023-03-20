@@ -55,7 +55,7 @@ $konek = mysqli_connect ($server, $user, $password, $database);
                                     <td> <?php echo $data['pengambilan']; ?> </td>
                                     <td> <?php echo $data['stok_akhir']; ?> </td>
                                     <td> <?php echo $data['ket']; ?> </td>
-                                    <td class="center"><a href="master.php?page=edit_keluar&id=<?php echo base64_encode($data['kode']); ?>" class="fa fa-refresh btn btn-success"> Edit</a></td>
+                                    <td class="center"><a href="master.php?page=edit_opname&id=<?php echo base64_encode($data['kode']); ?>" class="fa fa-refresh btn btn-success"> Edit</a></td>
                                     <td class="center"><a onClick="return confirm('Data ini akan di hapus.?')" href="master.php?page=opname&hapus=<?php echo $data['kode']; ?>" class="fa fa-wrench btn btn-danger"> Hapus</a></td>
                                 </tr>
                             <?php } ?>

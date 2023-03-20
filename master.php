@@ -234,6 +234,9 @@ if ($_SESSION['status'] == "") {
                     case 'opname':
                             include "modul/opname/index.php";
                             break;
+                    case 'edit_opname':
+                        include "modul/opname/edit.php";
+                        break;
 
 
 
