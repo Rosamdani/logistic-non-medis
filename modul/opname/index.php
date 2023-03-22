@@ -16,7 +16,7 @@ $konek = mysqli_connect ($server, $user, $password, $database);
         <div class="panel panel-success">
             <div class="panel-heading">
                 <a href="master.php?page=tambah_keluar"><button class="btn btn-primary fa fa-plus"> TAMBAH </button></a>
-                <h3> BARANG KELUAR</h3>
+                <h3> STOK OPNAME</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
